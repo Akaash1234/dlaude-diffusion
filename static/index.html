@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dlaude</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="app-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-top">
+                <div class="logo-area">
+                    <span class="logo-text">Dlaude</span>
+                    <button class="icon-btn collapse-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                            <line x1="9" y1="3" x2="9" y2="21" />
+                        </svg></button>
+                </div>
+                <button class="nav-item new-chat-main" id="newChatBtn">
+                    <div class="icon-circle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19" />
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                        </svg></div>
+                    <span>New chat</span>
+                </button>
+                <nav class="main-nav">
+                    <button class="nav-item active"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                        </svg><span>Chats</span></button>
+                    <button class="nav-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                        </svg><span>Projects</span></button>
+                    <button class="nav-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M12 2l-5.5 9h11L12 2z" />
+                            <circle cx="12" cy="18" r="3" />
+                        </svg><span>Artifacts</span></button>
+                    <button class="nav-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <polyline points="16 18 22 12 16 6" />
+                            <polyline points="8 6 2 12 8 18" />
+                        </svg><span>Code</span></button>
+                </nav>
+                <div class="section-label">Starred</div>
+                <nav class="secondary-nav">
+                    <button class="nav-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                        </svg><span>Exams</span></button>
+                </nav>
+                <div class="section-label">Recents</div>
+                <div class="recents-list" id="conversationList"></div>
+            </div>
+            <div class="sidebar-bottom">
+                <button class="profile-btn">
+                    <div class="avatar-circle">AP</div>
+                    <div class="profile-info">
+                        <div class="profile-name">Akaash Pothacamury</div>
+                        <div class="profile-plan">Free plan</div>
+                    </div>
+                    <div class="selector-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M7 15l5 5 5-5" />
+                            <path d="M7 9l5-5 5 5" />
+                        </svg></div>
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="loading-overlay" id="loadingOverlay">
+                <div class="loading-box">
+                    <div class="loading-spinner"></div>
+                    <h3 id="loadingStatus">Initializing...</h3>
+                    <p id="loadingDetail">Checking files...</p>
+                    <div class="loading-bar-bg">
+                        <div class="loading-bar-fill" id="loadingFill"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-area" id="chatArea">
+                <div class="welcome-screen" id="welcomeScreen">
+                    <div class="welcome-badge">Free plan · Upgrade</div>
+                    <h1 class="welcome-text"><span class="welcome-icon">✴</span> Welcome, Akaash</h1>
+                </div>
+                <div class="messages-scroll" id="messagesContainer">
+                    <div class="messages-list" id="messages"></div>
+                </div>
+            </div>
+            <div class="input-wrapper">
+                <div class="input-card">
+                    <div class="input-placeholder" id="inputPlaceholder">How can I help you today?</div>
+                    <textarea id="messageInput" rows="1"></textarea>
+                    <div class="input-controls">
+                        <div class="input-left">
+                            <button class="icon-btn-round" title="Add Attachment"><svg width="20" height="20"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="5" x2="12" y2="19" />
+                                    <line x1="5" y1="12" x2="19" y2="12" />
+                                </svg></button>
+                            <button class="chip-btn" id="extendedThinkingBtn"><svg width="16" height="16"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <polyline points="12 6 12 12 16 14" />
+                                </svg><span>Extended thinking</span></button>
+                        </div>
+                        <div class="input-right">
+                            <div class="model-selector"><span>LLaDA 2.0</span><svg width="12" height="12"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M6 9l6 6 6-6" />
+                                </svg></div>
+                            <button class="send-btn-orange" id="sendBtn" disabled><svg width="16" height="16"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="19" x2="12" y2="5" />
+                                    <polyline points="5 12 12 5 19 12" />
+                                </svg></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="generation-status" id="generationStatus">
+                    <span id="stepCounter">Step 0/32</span>
+                    <div class="mini-progress">
+                        <div class="mini-fill" id="progressFill"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+
+</html>
